@@ -57,9 +57,11 @@ void CChildView::OnPaint()
 {
 	CPaintDC dc(this); // 그리기를 위한 디바이스 컨텍스트입니다.
 	CDC*	canvas= (CDC*)game->getCanvas();
+	
 	int		w, h;
 	game->getSize(w, h);
-	dc.BitBlt(0, 0, w, h, canvas, 0, 0, SRCCOPY);
+
+	dc.BitBlt(0, 0, w, h, canvas, 0, 0, SRCCOPY); //전체화면 사이즈 다루나봄
 	TRACE("w=%d, h=%d\n", w, h);
 
 }
@@ -90,10 +92,13 @@ int CChildView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 }
 
 
-void CChildView::OnSize(UINT nType, int cx, int cy)
+void CChildView::OnSize(UINT nType, int cx, int cy) //게임화면 사이즈 정하는 함수
 {
 	CWnd::OnSize(nType, cx, cy);
-	game->setSize(cx, cy);
+	CRect	r;
+	GetParent()->GetClientRect(&r);
+	game->setSize(r.Width(), r.Height()); //이렇게 하면 백그라운드 전체화면
+	//game->setSize(cx, cy); //원래코드
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 }
 

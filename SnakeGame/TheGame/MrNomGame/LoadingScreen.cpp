@@ -40,6 +40,7 @@ void	CLoadingScreen::update(int deltaTime)
 	CAssets::stain2= g->newPixMap("..\\assets\\stain2.png", CGraphics::ARGB4444);
 	CAssets::stain3= g->newPixMap("..\\assets\\stain3.png", CGraphics::ARGB4444);
 
+	//CRect	r(0, 0, this->getWidth(), this->height());
 	game->setSize(CAssets::background->getWidth(), CAssets::background->getHeight());
 
 	//newscreen
